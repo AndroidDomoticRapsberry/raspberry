@@ -1,0 +1,25 @@
+Hay que estar en la ruta del proyecto
+
+sign apk:
+Right click on the project > Android Tools > Export Signed Application Package
+
+git init			-> 
+git add "file"			-> meter un archivo en el commit
+git status 			-> ver lo que has cambiado
+git commit -m "mensaje que sale en el commit"	-> enviar todo el commit
+git remote add origin https://github.com/skualninja/"Repository".git
+git push -u origin master	-> si hacemos el comando de arriba podemos poner
+		simplemente "origin" sino se pone la ruta:
+		https://github.com/skualninja/"Repository".git
+git pull "url proyecto"		-> hay que hacer "git init" en la carpeta actual 				primero, sino no funciona. Copia el proyecto 				indicado en la carpeta actual.
+git clone "url proyecto"	-> copia la carpeta del proyecto en la actual
+git checkout -b "branch_name"	-> crea una branch nueva con ese nombre
+git checkout "file"		-> deshace los cambios hechos en este archivo que 				hemos modificado en esta branch
+git checkout "branch"		-> cambia a la branch indicada
+git merge "branch"		-> agrega el contenido de esta branch a la 						actual (entre [] y azul)
+
+
+
+https://help.github.com/articles/resolving-merge-conflicts/
+https://help.github.com/articles/resolving-a-merge-conflict-from-the-command-line/
+http://githowto.com/resolving_conflicts
