@@ -7,15 +7,15 @@ import javafx.beans.property.StringProperty;
 
 public class User {
 
-	private  StringProperty Usuario = null;
-	private  StringProperty Password = null;
-	private  BooleanProperty Permisos = null;
-	private  BooleanProperty Estado = null;
-	private  StringProperty IPUser = null;
-	private  StringProperty NDispositivo = null;
+	private  StringProperty Usuario;
+	private  StringProperty Password;
+	private  BooleanProperty Permisos;
+	private  BooleanProperty Estado;
+	private  StringProperty IPUser;
+	private  StringProperty NDispositivo;
 	
 	public User(){
-		this(null,null,null);
+		
 	}
 	
 	public User(String usuario, String pass, Boolean permisos){
@@ -30,7 +30,7 @@ public class User {
 		
 	}
 	
-	public String setUsuario(){
+	public String getUsuario(){
 		return this.Usuario.get();
 	}
 	
@@ -38,11 +38,11 @@ public class User {
 		this.Usuario.set(usuario);
 	}
 	
-	public StringProperty getUsuario() {
+	public StringProperty UsuarioProperty() {
 		return Usuario;
 	}
 	
-	public String setPassword(){
+	public String getPassword(){
 		return this.Password.get();
 	}
 	
@@ -50,11 +50,11 @@ public class User {
 		this.Password.set(password);
 	}
 	
-	public StringProperty getPassword() {
+	public StringProperty PasswordProperty() {
 		return Password;
 	}
 	
-	public Boolean setPermisos(){
+	public Boolean getPermisos(){
 		return this.Permisos.get();
 	}
 	
@@ -62,11 +62,11 @@ public class User {
 		this.Permisos.set(permisos);
 	}
 	
-	public BooleanProperty getPermisos() {
+	public BooleanProperty PermisosProperty() {
 		return Permisos;
 	}
 	
-	public Boolean setEstado(){
+	public Boolean getEstado(){
 		return this.Estado.get();
 	}
 	
@@ -74,11 +74,11 @@ public class User {
 		this.Estado.set(estado);
 	}
 	
-	public BooleanProperty getEstado() {
+	public BooleanProperty EstadoProperty() {
 		return Estado;
 	}
 	
-	public String setIPUser(){
+	public String getIPUser(){
 		return this.IPUser.get();
 	}
 	
@@ -86,11 +86,11 @@ public class User {
 		this.IPUser.set(ipuser);
 	}
 	
-	public StringProperty getIPUser() {
+	public StringProperty IPUserProperty() {
 		return IPUser;
 	}
 	
-	public String setNDispositivo(){
+	public String getNDispositivo(){
 		return this.NDispositivo.get();
 	}
 	
@@ -98,7 +98,7 @@ public class User {
 		this.NDispositivo.set(ndispositivo);
 	}
 	
-	public StringProperty getNDispositivo() {
+	public StringProperty NDispositivoProperty() {
 		return NDispositivo;
 	}
 	
