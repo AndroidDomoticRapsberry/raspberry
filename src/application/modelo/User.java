@@ -5,6 +5,10 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlType(propOrder={"usuario","password","permisos","estado","IPUser","NDispositivo"})
 public class User {
 
 	private  StringProperty Usuario;
@@ -15,14 +19,16 @@ public class User {
 	private  StringProperty NDispositivo;
 	
 	public User(){
-		
+		this(null,null, false, false, null, null);
 	}
 	
-	public User(String usuario, String pass, Boolean permisos){
+	public User(String usuario, String pass, Boolean permisos, Boolean estado, String ipuser, String ndispo){
 		this.Usuario = new SimpleStringProperty(usuario);
 		this.Password = new SimpleStringProperty(pass);
 		this.Permisos = new SimpleBooleanProperty(permisos);
-		
+		this.Estado = new SimpleBooleanProperty(estado);
+		this.IPUser = new SimpleStringProperty(ipuser);
+		this.NDispositivo = new SimpleStringProperty(ndispo);
 		/* RELLENO */
 		
 		
@@ -31,21 +37,21 @@ public class User {
 	}
 	
 	public String getUsuario(){
-		return this.Usuario.get();
+		return Usuario.get();
 	}
-	
+	@XmlElement(name="Usuario")
 	public void setUsuario(String usuario) {
 		this.Usuario.set(usuario);
 	}
-	
+
 	public StringProperty UsuarioProperty() {
 		return Usuario;
 	}
 	
 	public String getPassword(){
-		return this.Password.get();
+		return Password.get();
 	}
-	
+	@XmlElement(name="Password")
 	public void setPassword(String password) {
 		this.Password.set(password);
 	}
@@ -55,9 +61,9 @@ public class User {
 	}
 	
 	public Boolean getPermisos(){
-		return this.Permisos.get();
+		return Permisos.get();
 	}
-	
+	@XmlElement(name="Permisos")
 	public void setPermisos(Boolean permisos) {
 		this.Permisos.set(permisos);
 	}
@@ -67,9 +73,9 @@ public class User {
 	}
 	
 	public Boolean getEstado(){
-		return this.Estado.get();
+		return Estado.get();
 	}
-	
+	@XmlElement(name="Estado")
 	public void setEstado(Boolean estado) {
 		this.Estado.set(estado);
 	}
@@ -79,9 +85,9 @@ public class User {
 	}
 	
 	public String getIPUser(){
-		return this.IPUser.get();
+		return IPUser.get();
 	}
-	
+	@XmlElement(name="IPUser")
 	public void setIPUser(String ipuser) {
 		this.IPUser.set(ipuser);
 	}
@@ -91,9 +97,9 @@ public class User {
 	}
 	
 	public String getNDispositivo(){
-		return this.NDispositivo.get();
+		return NDispositivo.get();
 	}
-	
+	@XmlElement(name="NDispositivo")
 	public void setNDispositivo(String ndispositivo) {
 		this.NDispositivo.set(ndispositivo);
 	}

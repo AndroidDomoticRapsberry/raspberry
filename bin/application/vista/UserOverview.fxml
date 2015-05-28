@@ -212,7 +212,7 @@
 								<TextField fx:id="AnadirUsuarioField" layoutX="141.0" layoutY="32.0" promptText="Escribe un usuario" />
 								<PasswordField fx:id="AnadirPassField" promptText="Escribe una contraseña" />
 								<PasswordField fx:id="AnadirRPassField" promptText="Repite tu contraseña" />
-								<ComboBox fx:id="Permisos" layoutX="141.0" layoutY="150.0" prefWidth="150.0" promptText="Elige" visibleRowCount="2">
+								<ComboBox fx:id="permisosanadir" layoutX="141.0" layoutY="150.0" prefWidth="150.0" promptText="Elige" visibleRowCount="2">
 									<items>
 										<FXCollections fx:factory="observableArrayList">
 											<String fx:value="Control" />
@@ -234,7 +234,7 @@
 					<children>
 						<VBox layoutX="56.0" layoutY="41.0" spacing="25.0">
 							<children>
-								<Label layoutX="14.0" layoutY="44.0" text="Elige un Usuario">
+								<Label layoutX="14.0" layoutY="44.0" text="Escoge un Usuario">
 									<font>
 										<Font name="System Bold" size="12.0" />
 									</font>
@@ -263,11 +263,11 @@
 						</VBox>
 						<VBox layoutX="217.0" layoutY="41.0" spacing="15.0">
 							<children>
-								<ComboBox prefWidth="150.0" />
-								<TextField />
-								<PasswordField />
-								<PasswordField />
-								<ComboBox layoutX="141.0" layoutY="150.0" prefWidth="150.0">
+								<ComboBox fx:id="usuarioseditar" prefWidth="150.0" promptText="Escoge" />
+								<TextField fx:id="EditarUsuarioField" />
+								<PasswordField fx:id="EditarPassField" />
+								<PasswordField fx:id="EditarRPassField" />
+								<ComboBox fx:id="permisoseditar" layoutX="141.0" layoutY="150.0" prefWidth="150.0" promptText="Elige">
 									<items>
 										<FXCollections fx:factory="observableArrayList">
 											<String fx:value="Item 1" />
@@ -277,7 +277,7 @@
 								</ComboBox>
 							</children>
 						</VBox>
-						<Button layoutX="257.0" layoutY="301.0" mnemonicParsing="false" text="Editar" />
+						<Button layoutX="257.0" layoutY="301.0" mnemonicParsing="false" onAction="#btnEditar" text="Editar" />
 						<Text layoutX="56.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Todos los campos son obligatorios." />
 					</children>
 				</AnchorPane>
@@ -298,10 +298,10 @@
 						</VBox>
 						<VBox layoutX="183.0" layoutY="39.0" spacing="15.0">
 							<children>
-								<ComboBox layoutX="141.0" layoutY="150.0" prefWidth="150.0" />
+								<ComboBox fx:id="usuariosborrar" layoutX="141.0" layoutY="150.0" prefWidth="150.0" promptText="Escoge" />
 							</children>
 						</VBox>
-						<Button layoutX="402.0" layoutY="39.0" mnemonicParsing="false" text="ELIMINAR" />
+						<Button layoutX="402.0" layoutY="39.0" mnemonicParsing="false" onAction="#btnBorrar" text="ELIMINAR" />
 						<Text layoutX="56.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Atención: Si borra un usuario no podra recuperarlo." />
 					</children>
 				</AnchorPane>

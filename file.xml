@@ -1,2 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<users/>
+<users>
+    <user>
+        <Usuario>qw</Usuario>
+        <Password>qw</Password>
+        <Permisos>true</Permisos>
+        <Estado>false</Estado>
+        <IPUser> </IPUser>
+        <NDispositivo> </NDispositivo>
+    </user>
+</users>
