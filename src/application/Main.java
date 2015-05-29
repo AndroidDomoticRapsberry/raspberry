@@ -28,11 +28,12 @@ import application.vista.UserOverviewController;
 
 public class Main extends Application {
 	public static ObservableList<User> userdata = FXCollections.observableArrayList();
-	private Stage primaryStage;
+	
 
 	public static  ObservableList<User> getUserdata() {
 		return userdata;
 	}
+	private Stage primaryStage;
 
 	/**
 	 * Inicia el Stage de FXML y llama al Inicializador de UserOverview
@@ -41,7 +42,8 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			this.primaryStage = primaryStage;
-			this.primaryStage.setTitle("Android Domotic Raspberry Control");
+			this.primaryStage.setTitle(
+					"Android Domotic Raspberry Control");
 			primaryStage.setMinHeight(438);
 			primaryStage.setMinWidth(618);
 			primaryStage.setMaxHeight(438);
@@ -64,14 +66,16 @@ public class Main extends Application {
 
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("vista/UserOverview.fxml"));
+			loader.setLocation(Main.class.getResource(
+					"vista/UserOverview.fxml"));
 			TabPane userOverview = (TabPane) loader.load();
 
 			Scene scene = new Scene(userOverview);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 
-			UserOverviewController controller = loader.getController();
+			UserOverviewController controller = loader.
+					getController();
 			controller.setMain(this);
 
 
