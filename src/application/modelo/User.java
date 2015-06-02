@@ -13,19 +13,19 @@ public class User {
 
 	private  StringProperty Usuario;
 	private  StringProperty Password;
-	private  BooleanProperty Permisos;
+	private  StringProperty Permisos;
 	private  BooleanProperty Estado;
 	private  StringProperty IPUser;
 	private  StringProperty NDispositivo;
 	
 	public User(){
-		this(null,null, false, false, null, null);
+		this(null,null, null, false, null, null);
 	}
 	
-	public User(String usuario, String pass, Boolean permisos, Boolean estado, String ipuser, String ndispo){
+	public User(String usuario, String pass, String permisos, Boolean estado, String ipuser, String ndispo){
 		this.Usuario = new SimpleStringProperty(usuario);
 		this.Password = new SimpleStringProperty(pass);
-		this.Permisos = new SimpleBooleanProperty(permisos);
+		this.Permisos = new SimpleStringProperty(permisos);
 		this.Estado = new SimpleBooleanProperty(estado);
 		this.IPUser = new SimpleStringProperty(ipuser);
 		this.NDispositivo = new SimpleStringProperty(ndispo);
@@ -60,15 +60,15 @@ public class User {
 		return Password;
 	}
 	
-	public Boolean getPermisos(){
+	public String getPermisos(){
 		return Permisos.get();
 	}
 	@XmlElement(name="Permisos")
-	public void setPermisos(Boolean permisos) {
+	public void setPermisos(String permisos) {
 		this.Permisos.set(permisos);
 	}
 	
-	public BooleanProperty PermisosProperty() {
+	public StringProperty PermisosProperty() {
 		return Permisos;
 	}
 	

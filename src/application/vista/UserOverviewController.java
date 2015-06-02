@@ -11,14 +11,16 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import org.controlsfx.control.action.Action;
 import org.controlsfx.dialog.Dialog;
 import org.controlsfx.dialog.Dialogs;
 
-import application.Main;
+import application.MainControl;
 import application.modelo.User;
 
+@SuppressWarnings("static-access")
 public class UserOverviewController {
 
 
@@ -58,7 +60,6 @@ public class UserOverviewController {
 
 	/**
 	 * Variables Ver 
-	 * EN ELLO
 	 */
 	@FXML
 	private TableView<User> userTable;
@@ -72,13 +73,12 @@ public class UserOverviewController {
 	private TableColumn<User, String> ipdColumn;
 	@FXML
 	private TableColumn<User, String> permisosColumn;
-	@FXML
-	private TableColumn<User, String> estadoColumn;
-	
+
+
 	/**
 	 * Variables generales
 	 */
-	private Main main;
+	private MainControl main;
 	private User user;
 	private static ObservableList<User> userdata = FXCollections.observableArrayList();
 	ObservableList<String> options = 
@@ -92,18 +92,13 @@ public class UserOverviewController {
 	//---------------------------------
 	//METODOS GENERAL
 	//---------------------------------
-	@SuppressWarnings("static-access")
+
+
 	@FXML
 	private void initialize() {
 
-		
-		usuarioColumn.setCellValueFactory(cellData -> cellData.getValue().UsuarioProperty());
-		passColumn.setCellValueFactory(cellData -> cellData.getValue().PasswordProperty());
-		ndColumn.setCellValueFactory(cellData -> cellData.getValue().NDispositivoProperty());
-		ipdColumn.setCellValueFactory(cellData -> cellData.getValue().IPUserProperty());
 
-		
-		
+
 		permisosanadir.getItems().clear();
 		permisosanadir.getItems().addAll(options);
 
@@ -116,9 +111,13 @@ public class UserOverviewController {
 		usuariosborrar.getItems().clear();
 		usuariosborrar.getItems().addAll(listusers);
 
+
+
 		if (main.userdata != null){
 			llenarlista();
 		}
+		table();
+		
 	}
 
 	public UserOverviewController() {
@@ -131,11 +130,10 @@ public class UserOverviewController {
 		AnadirPassField.setText(user.getPassword());		
 	}
 
-	public void setMain(Main main) {
+	public void setMain(MainControl main) {
 		this.main = main;
 	}
 
-	@SuppressWarnings("static-access")
 	private void llenarlista(){
 		listusers.clear();
 
@@ -151,19 +149,41 @@ public class UserOverviewController {
 
 	}
 
+
+	//---------------------------------
+	//METODOS VER
+	//---------------------------------
+
+	private void preparetable(){
+		usuarioColumn.setCellValueFactory(new PropertyValueFactory<User,String>("Usuario"));
+		passColumn.setCellValueFactory(new PropertyValueFactory<User,String>("Password"));
+		ndColumn.setCellValueFactory(new PropertyValueFactory<User,String>("NDispositivo"));
+		ipdColumn.setCellValueFactory(new PropertyValueFactory<User,String>("IPUser"));
+		permisosColumn.setCellValueFactory(new PropertyValueFactory<User,String>("Permisos"));
+
+	
+	}
+	private void loadData(){
+		userTable.getItems().clear();
+		userTable.getItems().addAll(main.userdata);
+		
+	}
+	private void table(){
+		main.unmarshall();
+		preparetable();
+		loadData();
+	}
+
+	@FXML
+	private void btnReload(){
+		
+		table();
+	}
+
 	//---------------------------------
 	//METODOS AÑADIR
 	//---------------------------------
-	private boolean combopermAnadir(String perm){
-		if (permisosanadir.getSelectionModel().getSelectedItem().equals("Control")) {
-			return true;
-		} else {
-			return false;
-		}
 
-	}
-
-	@SuppressWarnings("static-access")
 	@FXML
 	private void btnAnadir(){
 
@@ -171,7 +191,7 @@ public class UserOverviewController {
 		if (isInputValid()) {
 
 			user = new User(AnadirUsuarioField.getText(),AnadirPassField.getText(),
-					combopermAnadir(permisosanadir.getSelectionModel().getSelectedItem()), false, " ", " ");
+					permisosanadir.getSelectionModel().getSelectedItem(), false, " ", " ");
 
 			Dialogs.create()
 			.title("")
@@ -184,11 +204,12 @@ public class UserOverviewController {
 			iniAnadir();
 			iniEditar();
 			iniBorrar();
+			table();
 
 		} 
 	}
 
-	
+
 	private void iniAnadir(){
 		AnadirUsuarioField.setText(null);
 		AnadirPassField.setText(null);
@@ -199,15 +220,8 @@ public class UserOverviewController {
 	//---------------------------------
 	//METODOS EDITAR
 	//---------------------------------
-	private boolean combopermEditar(String perm){
-		if (permisoseditar.getSelectionModel().getSelectedItem().equals("Control")){
-			return true;
-		} else {
-			return false;
-		}
-	}
 
-	@SuppressWarnings({ "static-access", "rawtypes" })
+
 	@FXML
 	private void btnEditar(){
 
@@ -221,6 +235,7 @@ public class UserOverviewController {
 
 			if (cuidado == Dialog.Actions.YES){
 				userdata.addAll(main.getUserdata());
+				@SuppressWarnings("rawtypes")
 				Iterator iterator = userdata.iterator();
 				boolean ok = true;
 
@@ -231,7 +246,7 @@ public class UserOverviewController {
 						User usa = husah;
 						usa.setUsuario(EditarUsuarioField.getText());
 						usa.setPassword(EditarPassField.getText());
-						usa.setPermisos(combopermEditar(permisoseditar.getSelectionModel().getSelectedItem()));
+						usa.setPermisos(permisoseditar.getSelectionModel().getSelectedItem());
 						main.getUserdata().add(usa);
 						main.getUserdata().remove(usa);
 						main.JAXBmarshall();
@@ -239,6 +254,7 @@ public class UserOverviewController {
 						iniEditar();
 						iniAnadir();
 						iniBorrar();
+						table();
 
 
 					}
@@ -253,7 +269,7 @@ public class UserOverviewController {
 		}
 
 	}
-	
+
 	private void iniEditar(){
 		usuarioseditar.setValue(null);
 		EditarUsuarioField.setText(null);
@@ -265,7 +281,6 @@ public class UserOverviewController {
 	//---------------------------------
 	//METODOS BORRAR
 	//---------------------------------
-	@SuppressWarnings({ "static-access", "rawtypes" })
 	@FXML
 	private void btnBorrar() {
 		BorrarClicked = true;
@@ -273,8 +288,10 @@ public class UserOverviewController {
 				masthead("¿Seguro que deseas eliminar este Usuario?").
 				message("Recuerda que una vez eliminado no podras recuperarlo.").
 				showConfirm();
-		
+
 		if (cuidado == Dialog.Actions.YES){
+
+			@SuppressWarnings("rawtypes")
 			Iterator iterator = main.userdata.iterator();
 			boolean ok = true;
 			while (iterator.hasNext() && ok) {
@@ -288,6 +305,7 @@ public class UserOverviewController {
 					iniBorrar();
 					iniEditar();
 					iniAnadir();
+					table();
 
 
 				}
@@ -307,7 +325,6 @@ public class UserOverviewController {
 	 * Control de errores
 	 * @return
 	 */
-	@SuppressWarnings("static-access")
 	private boolean isInputValid() {
 		String errorMessage = "";
 

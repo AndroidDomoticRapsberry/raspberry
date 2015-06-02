@@ -15,19 +15,29 @@
          <content>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <TableView fx:id="userTable" layoutY="12.0" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="userTable" layoutY="12.0" prefHeight="322.0" prefWidth="600.0" AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
                       <TableColumn fx:id="usuarioColumn" editable="false" prefWidth="75.0" text="Usuario" />
                       <TableColumn fx:id="passColumn" editable="false" prefWidth="106.0" sortable="false" text="Contraseña" />
                         <TableColumn fx:id="ndColumn" editable="false" prefWidth="146.0" text="Nombre Dispositivo" />
                         <TableColumn fx:id="ipdColumn" editable="false" prefWidth="101.0" sortable="false" text="IP Dispositivo" />
                         <TableColumn fx:id="permisosColumn" editable="false" prefWidth="78.0" text="Permisos" />
-                        <TableColumn fx:id="estadoColumn" editable="false" prefWidth="93.0" text="Estado" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
+                  <Button layoutX="457.0" layoutY="334.0" mnemonicParsing="false" onAction="#btnReload" text="Recargar" />
+                  <Text layoutX="14.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Los campos &quot;Nombre Dispositivo&quot; e &quot;IP Dispositivo&quot; apareceran vacios ">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="14.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="hasta que se realice la primera conexión de la app móvil con el servidor.">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Text>
                </children>
             </AnchorPane>
          </content>
